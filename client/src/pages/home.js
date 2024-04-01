@@ -13,7 +13,7 @@ function Home() {
           const json = await response.json();
 
           if(response.ok){
-              dispatch({type: "SET_WORKOUTS", payload: json})
+              dispatch({type: "SET_NOTES", payload: json})
           }
 
       }
@@ -26,7 +26,7 @@ function Home() {
     <div>
       <CreateArea />
       {notes && notes.map((element)=>{
-         return <Note key={element._id}  header={element.title} content={element.content} />
+         return <Note key={element._id} id={element._id} header={element.title} content={element.content} />
       })}  
     </div>
   );

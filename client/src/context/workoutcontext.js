@@ -4,14 +4,18 @@ export const WorkoutsContext = createContext()
 
 export const workoutsReducer = (state, action) => {
   switch (action.type) {
-    case 'SET_WORKOUTS':
+    case 'SET_NOTES':
       return { 
         notes: action.payload 
       }
-    case 'CREATE_WORKOUT':
+    case 'CREATE_NOTE':
       return { 
         notes: [action.payload, ...state.notes] 
       }
+    case 'DELETE_NOTES':
+      return { 
+        notes: state.notes.filter((note) => note._id !== action.payload._id)
+      }     
     default:
       return state
   }

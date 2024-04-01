@@ -1,4 +1,5 @@
 const model = require("../model/model");
+const mongoose = require("mongoose");
 
 
 //get all resource
@@ -43,9 +44,21 @@ const updateResource =  async(req, res)=>{
 
 //delete a specific resource
 const deleteResource = async(req, res)=>{
+    // const {id} = req.params;
+    // if (!mongoose.Types.ObjectId.isValid(id)) {
+    //     return res.status(400).json({error: 'No such workout'})
+    //   }
+    
+    //   const workout = await model.findOneAndDelete({_id: id})
+    
+    //   if(!workout) {
+    //     return res.status(400).json({error: 'No such workout'})
+    //   }
+    
+    //   res.status(200).json(workout)
     const {id} = req.params;
 
-    await model.deleteOne({_id:id}).then((info)=>{
+    await model.findOneAndDelete({_id:id}).then((info)=>{
         res.status(200).json(info);
     }).catch((error)=>{
         res.status(404).json({error: error.message});
